@@ -283,3 +283,76 @@
   background-color: hsl(var(--destructive) / 0.15);
   color: hsl(var(--destructive));
 }
+
+/* Nav dropdown */
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 1rem;
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px -4px hsl(var(--foreground) / 0.12);
+  min-width: 200px;
+  overflow: hidden;
+  animation: fadeSlideDown 0.2s ease;
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  background: none;
+  color: hsl(var(--foreground));
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.nav-dropdown-item:hover {
+  background-color: hsl(var(--accent));
+}
+
+/* Recipe list */
+.recipe-list {
+  padding-left: 1.25rem;
+  margin-bottom: 0;
+}
+
+.recipe-list li {
+  padding: 0.35rem 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+/* Back button */
+.btn-back {
+  background: none;
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-back:hover {
+  background-color: hsl(var(--accent));
+  border-color: hsl(var(--primary) / 0.4);
+}

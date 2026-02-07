@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { Upload, ImageIcon, Send } from 'lucide-react';
-import HealthyAlternatives from './HealthyAlternatives';
 
 type Status = 'idle' | 'uploading' | 'success' | 'error';
 
@@ -30,18 +29,11 @@ const MealAnalyzeSection: React.FC = () => {
 
   const handleAnalyze = async () => {
     if (!file) return;
-
     setStatus('uploading');
-
     try {
       const formData = new FormData();
       formData.append('meal_image', file);
-
-      await fetch(WEBHOOK_URL, {
-        method: 'POST',
-        body: formData,
-      });
-
+      await fetch(WEBHOOK_URL, { method: 'POST', body: formData });
       setStatus('success');
     } catch {
       setStatus('error');
@@ -61,9 +53,8 @@ const MealAnalyzeSection: React.FC = () => {
   return (
     <section id="analyze" className="section-full py-5">
       <div className="container">
-        <div className="row g-4 align-items-start">
-          {/* Main upload card */}
-          <div className="col-12 col-lg-7">
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-10 col-lg-7">
             <div className="card-themed p-4 p-md-5">
               <div className="d-flex align-items-center gap-2 mb-4">
                 <ImageIcon size={24} className="text-primary-themed" />
@@ -82,12 +73,14 @@ const MealAnalyzeSection: React.FC = () => {
                 style={{ cursor: 'pointer' }}
               >
                 {preview ? (
-                  <img
-                    src={preview}
-                    alt="Meal preview"
-                    className="img-fluid rounded"
-                    style={{ maxHeight: 320, objectFit: 'cover', width: '100%' }}
-                  />
+                  <div className="d-flex justify-content-center">
+                    <img
+                      src={preview}
+                      alt="Meal preview"
+                      className="img-fluid rounded"
+                      style={{ maxHeight: 220, maxWidth: '100%', objectFit: 'contain' }}
+                    />
+                  </div>
                 ) : (
                   <div className="py-5">
                     <Upload size={40} className="text-muted-themed mb-3" />
@@ -121,13 +114,6 @@ const MealAnalyzeSection: React.FC = () => {
                   {status === 'uploading' ? 'Analyzing…' : 'Analyze Meal'}
                 </button>
               </div>
-            </div>
-          </div>
-
-          {/* Healthy alternatives sidebar */}
-          <div className="col-12 col-lg-5">
-            <div className="card-themed p-4">
-              <HealthyAlternatives />
             </div>
           </div>
         </div>
